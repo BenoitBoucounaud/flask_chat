@@ -9,8 +9,9 @@ socketio = SocketIO(app)
 
 
 @app.route('/')
-def sessions():
-    return render_template('session.html')
+@app.route('/<room_name>')
+def sessions(room_name=None):
+    return render_template('session.html', room_name=room_name)
 
 
 def messageReceived(methods=['GET', 'POST']):

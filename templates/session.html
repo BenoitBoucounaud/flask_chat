@@ -2,10 +2,20 @@
 <html lang="en">
 
     <head>
+        {% if room_name %}
+        <title>{{ room_name }}</title>
+        {% else %}
         <title>Chat room</title>
+        {% endif %}
     </head>
 
     <body>
+
+        {% if room_name %}
+        <h2 style='color: rgb(16, 119, 50);font-size: 40px;'>{{ room_name }}</h2>
+        {% else %}
+        <h2 style='color: rgba(16, 119, 50);font-size: 40px;'>Chat room</h2>
+        {% endif %}
 
         <h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
         <div class="message_holder"></div>
