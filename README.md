@@ -1,17 +1,21 @@
 # flask_chat
 Little chat web app with Flask
 
+## MongDB
+Install MongoDB : https://docs.mongodb.com/manual/installation/
+To run MongoDB on Ubuntu : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#run-mongodb-community-edition
+
+## Virtualenv and requirtements
 Install and create virtualenv 
 https://docs.python-guide.org/dev/virtualenvs/ : 
 ```
 python -m pip install --user virtualenv
 virtualenv venv
 ```
-Activate virtualenv and install packages : 
+Activate virtualenv and install requirtements : 
 ```
 source venv/bin/activate
-pip install Flask
-pip install flask-socketio
+pip install -r requirements.txt
 ```
 
 Daactivate virtualenv : 
