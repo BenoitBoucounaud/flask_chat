@@ -1,10 +1,13 @@
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 # enable encryption
 app.config['SECRET_KEY'] = 'vnkdjnfjknfl1232#'
+# mongoDB
+app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
 socketio = SocketIO(app)
 
 
