@@ -7,11 +7,17 @@ app = Flask(__name__)
 # enable encryption
 app.config['SECRET_KEY'] = 'vnkdjnfjknfl1232#'
 # mongoDB
-app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/chatbase"
 socketio = SocketIO(app)
+mongo = PyMongo(app)
 
 
 @app.route('/')
+def home_page():
+    online_users = mongo.db.users.find({"online": True})
+    return render_template("home.html",
+        online_users=online_users)
+
 @app.route('/<room_name>')
 def sessions(room_name=None):
     return render_template('session.html', room_name=room_name)
