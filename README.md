@@ -2,8 +2,20 @@
 Little chat web app with Flask
 
 ## MongDB
-Install MongoDB : https://docs.mongodb.com/manual/installation/
+Install MongoDB : https://docs.mongodb.com/manual/installation/   
 To run MongoDB on Ubuntu : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#run-mongodb-community-edition
+
+Create database and admin user (in mongod):  
+```
+use chatbase
+db.users.insert({
+    name: 'admin',
+    password: 'password',
+    creation_date: Date(),
+    admin: true,
+    online : false
+})
+```
 
 ## Virtualenv and requirtements
 Install and create virtualenv 
