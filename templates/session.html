@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "index.html" %}
 
-    <head>
-        {% if room_name %}
-        <title>{{ room_name }}</title>
-        {% else %}
-        <title>Chat room</title>
-        {% endif %}
-    </head>
+{% block title %}
+    {% if room_name %}
+    <title>{{ room_name }}</title>
+    {% else %}
+    <title>Chat room</title>
+    {% endif %}
+{% endblock %}
 
-    <body>
+{% block content %}
 
         {% if room_name %}
         <h2 style='color: rgb(16, 119, 50);font-size: 40px;'>{{ room_name }}</h2>
@@ -59,6 +58,4 @@
             })
         </script>
 
-    </body>
-
-</html>
+{% endblock %}
