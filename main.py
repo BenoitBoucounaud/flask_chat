@@ -15,7 +15,7 @@ mongo = PyMongo(app)
 @app.route('/')
 def home_page():
     online_users = mongo.db.users.find({"online": True})
-    return render_template("home.html",
+    return render_template("index.html",
         online_users=online_users)
 
 @app.route('/<room_name>')
