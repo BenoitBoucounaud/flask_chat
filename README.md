@@ -45,3 +45,9 @@ Run flask :
 flask run
 ```
 Application [here](http://127.0.0.1:5000)
+
+
+## Docs 
+[Flask](https://flask.palletsprojects.com/en/2.0.x/)
+[Jinja2](https://jinja.palletsprojects.com/en/3.0.x/templates/)
+[MongoDB](https://docs.mongodb.com)
