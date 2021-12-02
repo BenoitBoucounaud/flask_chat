@@ -1,61 +1,57 @@
 {% extends "index.html" %}
 
 {% block title %}
-    {% if room_name %}
-    <title>{{ room_name }}</title>
-    {% else %}
-    <title>Chat room</title>
-    {% endif %}
+{% if room_name %}
+<title>{{ room_name }}</title>
+{% else %}
+<title>Chat room</title>
+{% endif %}
 {% endblock %}
 
 {% block content %}
 
-        {% if room_name %}
-        <h2 style='color: rgb(16, 119, 50);font-size: 40px;'>{{ room_name }}</h2>
-        {% else %}
-        <h2 style='color: rgba(16, 119, 50);font-size: 40px;'>Chat room</h2>
-        {% endif %}
+{% if room_name %}
+<h2 style='color: rgb(16, 119, 50);font-size: 40px;'>{{ room_name }}</h2>
+{% else %}
+<h2 style='color: rgba(16, 119, 50);font-size: 40px;'>Chat room</h2>
+{% endif %}
 
-        <h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
-        <div class="message_holder"></div>
+<h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
+<div class="message_holder"></div>
 
-        <form action="" method="POST">
-            <input type="text" class="username" placeholder="User Name" />
-            <input type="text" class="message" placeholder="Messages" />
-            <input type="submit" />
-        </form>
+<form action="" method="POST">
+    <input type="text" class="username" placeholder="User Name" />
+    <input type="text" class="message" placeholder="Messages" />
+    <input type="submit" />
+</form>
 
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <!-- Socket.io -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
-        <!-- My script  -->
-        <script type="text/javascript">
-            var socket = io.connect('http://' + document.domain + ':' + location.port);
 
-            socket.on('connect', function () {
-                socket.emit('my event', {
-                    data: 'User Connected'
-                })
-                var form = $('form').on('submit', function (e) {
-                    e.preventDefault()
-                    let user_name = $('input.username').val()
-                    let user_input = $('input.message').val()
-                    socket.emit('my event', {
-                        user_name: user_name,
-                        message: user_input
-                    })
-                    $('input.message').val('').focus()
-                })
+<!-- My script  -->
+<script type="text/javascript">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    socket.on('connect', function () {
+        socket.emit('my event', {
+            data: 'User Connected'
+        })
+        var form = $('form').on('submit', function (e) {
+            e.preventDefault()
+            let user_name = $('input.username').val()
+            let user_input = $('input.message').val()
+            socket.emit('my event', {
+                user_name: user_name,
+                message: user_input
             })
-            socket.on('my response', function (msg) {
-                console.log(msg)
-                if (typeof msg.user_name !== 'undefined') {
-                    $('h3').remove()
-                    $('div.message_holder').append('<div><b style="color: #000">' + msg.user_name + '</b> ' + msg.message + '</div>')
-                }
-            })
-        </script>
+            $('input.message').val('').focus()
+        })
+    })
+    socket.on('my response', function (msg) {
+        console.log(msg)
+        if (typeof msg.user_name !== 'undefined') {
+            $('h3').remove()
+            $('div.message_holder').append('<div><b style="color: #000">' + msg.user_name + '</b> ' + msg.message + '</div>')
+        }
+    })
+</script>
 
 {% endblock %}
