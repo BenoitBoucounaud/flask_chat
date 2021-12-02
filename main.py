@@ -35,7 +35,7 @@ def index():
 
 @app.route('/room/<room_name>', methods=['GET', 'POST'])
 def room(room_name=None):
-    return render_template('session.html', room_name=room_name)
+    return render_template('room.html', room_name=room_name)
 
 
 def messageReceived(methods=['GET', 'POST']):
