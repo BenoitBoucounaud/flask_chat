@@ -33,7 +33,7 @@ def index():
                            online_users=online_users)
 
 
-@app.route('/room/<room_name>')
+@app.route('/room/<room_name>', methods=['GET', 'POST'])
 def room(room_name=None):
     return render_template('session.html', room_name=room_name)
 
