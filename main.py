@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO
 from flask_pymongo import PyMongo
 
@@ -12,14 +12,29 @@ socketio = SocketIO(app)
 mongo = PyMongo(app)
 
 
-@app.route('/')
-def home_page():
+@app.route('/', methods=['GET', 'POST'])
+def index():
     online_users = mongo.db.users.find({"online": True})
-    return render_template("index.html",
-        online_users=online_users)
+    print(request.method)
+    if request.method == 'POST':
+        if request.form.get('search') == 'Search/Create':
+            # pass
+            room_name = request.form.get('roomName')
+            print(room_name)
+            return redirect(url_for("room", room_name=room_name))
+        else:
+            # pass # unknown
+            return render_template("index.html",
+                                   online_users=online_users)
+    elif request.method == 'GET':
+        print("No Post Back Call")
 
-@app.route('/<room_name>')
-def sessions(room_name=None):
+    return render_template("index.html",
+                           online_users=online_users)
+
+
+@app.route('/room/<room_name>')
+def room(room_name=None):
     return render_template('session.html', room_name=room_name)
 
 
