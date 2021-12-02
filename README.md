@@ -8,7 +8,7 @@ To run MongoDB on Ubuntu : https://docs.mongodb.com/manual/tutorial/install-mong
 Create database and admin user (in mongod):  
 ```
 use chatbase
-db.users.insert({
+db.users.insertOne({
     name: 'admin',
     password: 'password',
     creation_date: Date(),
